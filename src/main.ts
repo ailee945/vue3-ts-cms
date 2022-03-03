@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-// import { vRequest } from './service';
+import { vRequest } from './service';
 // 全局引用
 // import ElementPlus from 'element-plus';
 // import 'element-plus/dist/index.css';
@@ -14,7 +14,7 @@ createApp(App).use(store).use(router).mount('#app');
 // console.log(process.env.VUE_APP_BASE_NAME);
 
 // 测试vRequest对象
-// vRequest.request({
-//   url: '/',
-//   method: 'GET',
-// });
+vRequest.request({
+  url: '/',
+  method: 'GET',
+});
