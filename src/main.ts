@@ -3,6 +3,9 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import { vRequest } from './service';
+
+import 'normalize.css';
+import './assets/css/index.less';
 // 全局引用
 // import ElementPlus from 'element-plus';
 // import 'element-plus/dist/index.css';
