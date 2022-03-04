@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <router-link to="/login">login</router-link> |
-    <router-view />
+  <div class="app">
+    <Login></Login>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
-  setup() {
-    return {};
-  },
-});
+<script setup lang="ts">
+import Login from './views/login/login.vue';
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+.app {
+  height: 100%;
+}
+</style>

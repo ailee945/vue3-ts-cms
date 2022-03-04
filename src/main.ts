@@ -17,7 +17,7 @@ createApp(App).use(store).use(router).mount('#app');
 // console.log(process.env.VUE_APP_BASE_NAME);
 
 // 测试vRequest对象
-vRequest.request({
-  url: '/',
-  method: 'GET',
-});
+// vRequest.request({
+//   url: '/',
+//   method: 'GET',
+// });
