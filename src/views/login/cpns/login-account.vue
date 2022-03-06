@@ -1,11 +1,11 @@
 <template>
   <div class="login-account">
-    <el-form>
-      <el-form-item label="账号">
+    <el-form :rules="rules" :model="account">
+      <el-form-item label="账号" prop="username">
         <el-input v-model="account.username"></el-input>
       </el-form-item>
-      <el-form-item label="密码">
-        <el-input v-model="store.state.msg"></el-input>
+      <el-form-item label="密码" prop="password">
+        <el-input v-model="account.password"></el-input>
       </el-form-item>
     </el-form>
   </div>
@@ -13,8 +13,9 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { useStore } from 'vuex';
-const store = useStore();
+
+import { rules } from '../config/account-config';
+
 const account = reactive({
   username: '',
   password: '',

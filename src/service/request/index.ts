@@ -98,6 +98,22 @@ class VRequest {
         });
     });
   }
+
+  get<T>(config: VRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'GET' });
+  }
+
+  post<T>(config: VRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'POST' });
+  }
+
+  delete<T>(config: VRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'DELETE' });
+  }
+
+  patch<T>(config: VRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: 'PATCH' });
+  }
 }
 
 export default VRequest;
