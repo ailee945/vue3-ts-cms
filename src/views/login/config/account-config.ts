@@ -6,8 +6,8 @@ export const rules = {
       trigger: 'blur',
     },
     {
-      pattern: /^[0-9]{3}$/,
-      message: '账号为6位数字数字',
+      pattern: /^[0-9]{6}$/,
+      message: '账号为6位数字',
       trigger: 'blur',
     },
   ],

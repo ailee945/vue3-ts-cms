@@ -8,7 +8,7 @@
             <el-icon><user /></el-icon>账户登录
           </span>
         </template>
-        <LoginAccount />
+        <LoginAccount ref="accountRef" />
       </el-tab-pane>
       <el-tab-pane>
         <template #label>
@@ -35,15 +35,18 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+
 import { User, Iphone } from '@element-plus/icons-vue';
+
 import LoginAccount from './login-account.vue';
 import LoginPhone from './login-phone.vue';
 // 默认记住密码
 const isKeepingPassword = ref(true);
+const accountRef = ref<InstanceType<typeof LoginAccount> | null>(null);
 // 处理登录操作
-function handleLoginClick() {
-  console.log('立即登录');
-}
+const handleLoginClick = () => {
+  accountRef.value?.loginAction();
+};
 </script>
 
 <style lang="less" scoped>
