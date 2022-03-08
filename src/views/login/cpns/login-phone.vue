@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { ElForm } from 'element-plus';
-import { reactive, ref, defineExpose } from 'vue';
+import { reactive, ref } from 'vue';
 
 import { rules } from '../config/phone-config';
 
@@ -24,7 +24,7 @@ const phone = reactive({
   number: '',
   code: '',
 });
-const formRef = ref<null | InstanceType<typeof ElForm>>(null);
+const formRef = ref<InstanceType<typeof ElForm> | null>(null);
 
 const loginAction = () => {
   formRef.value?.validate((valid) => {
@@ -33,7 +33,7 @@ const loginAction = () => {
     }
   });
 };
-
+// eslint-disable-next-line no-undef
 defineExpose({ loginAction });
 </script>
 

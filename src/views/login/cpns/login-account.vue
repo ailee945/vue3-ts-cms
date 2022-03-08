@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, defineExpose } from 'vue';
+import { reactive, ref } from 'vue';
 import { useStore } from 'vuex';
 
 import { ElForm } from 'element-plus';
@@ -48,6 +48,7 @@ const loginAction = (isKeepPassword: boolean) => {
     }
   });
 };
+// eslint-disable-next-line no-undef
 defineExpose({ loginAction });
 </script>
 

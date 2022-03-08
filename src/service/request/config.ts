@@ -13,7 +13,7 @@ export let BASE_URL = '';
 export const TIMEOUT = 5000;
 if (process.env.NODE_ENV === 'development') {
   // 开发环境
-  BASE_URL = 'httpbin.org/';
+  BASE_URL = '/api';
 } else if (process.env.NODE_ENV === 'test') {
   // 测试环境
   BASE_URL = 'test';
