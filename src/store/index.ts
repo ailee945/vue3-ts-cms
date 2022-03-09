@@ -3,7 +3,7 @@ import { IRootModule } from './types';
 
 import loginModule from './login/login';
 
-export default createStore<IRootModule>({
+export const store = createStore<IRootModule>({
   state: {
     msg: 'jang',
     age: 18,
@@ -15,3 +15,7 @@ export default createStore<IRootModule>({
     loginModule,
   },
 });
+
+export function setupStore() {
+  store.dispatch('loginModule/loadLocal');
+}

@@ -92,7 +92,7 @@ class VRequest {
           resolve(res);
         })
         .catch((err) => {
-          // 重置默认值, 以免影响下下一次loading执行
+          // 重置默认值, 以免影响下一次loading执行
           // this.showLoading = DEFAULT_LOADING;
           reject(err);
         });

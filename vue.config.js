@@ -6,6 +6,17 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers');
 const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
   transpileDependencies: true,
+  devServer: {
+    proxy: {
+      '^/api': {
+        target: 'http://152.136.185.210:4000',
+        pathRewrite: {
+          '^/api': '',
+        },
+        changeOrigin: true,
+      },
+    },
+  },
   configureWebpack: {
     plugins: [
       AutoImport({
@@ -15,16 +26,16 @@ module.exports = defineConfig({
         resolvers: [ElementPlusResolver()],
       }),
     ],
-    devServer: {
-      proxy: {
-        '^/api': {
-          target: 'http://152.136.185.210:5000',
-          pathRewrite: {
-            '^/api': '',
-          },
-          changeOrigin: true,
-        },
-      },
-    },
+    // devServer: {
+    //   proxy: {
+    //     '/api': {
+    //       target: 'http://152.136.185.210:4000',
+    //       pathRewrite: {
+    //         '^/api': '',
+    //       },
+    //       changeOrigin: true,
+    //     },
+    //   },
+    // },
   },
 });

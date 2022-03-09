@@ -1,22 +1,72 @@
 import { Module } from 'vuex';
 
-import { accountLoginRequest } from '@/service/login/login';
+import {
+  accountLoginRequest,
+  requestUserInfoById,
+  requestUserMenuById,
+} from '@/service/login/login';
+import localCache from '@/utils/cache';
 
 import { ILoginModule } from './types';
 import { IRootModule } from '../types';
-import { IAccount } from '@/service/login/types';
+import type { IAccount } from '@/service/login/types';
+import router from '@/router';
 
 const loginModule: Module<ILoginModule, IRootModule> = {
   namespaced: true,
   state: {
     token: '',
     userInfo: {},
+    menuInfo: [],
   },
-  mutations: {},
+  mutations: {
+    changeToken(state, token: string) {
+      state.token = token;
+    },
+    changeUserInfo(state, userInfo: any) {
+      state.userInfo = userInfo;
+    },
+    changeUserMenu(state, menuInfo: any) {
+      state.menuInfo = menuInfo;
+    },
+  },
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
+      // 实现登录逻辑
       const loginResult = await accountLoginRequest(payload);
-      console.log(loginResult);
+      // 保存token
+      const { id, token } = loginResult.data;
+      commit('changeToken', token);
+      localCache.setCache('token', token);
+
+      // 请求用户信息
+      const userInfoResult = await requestUserInfoById(id);
+      const userInfo = userInfoResult.data;
+      commit('changeUserInfo', userInfo);
+      localCache.setCache('userInfo', userInfo);
+
+      // 请求用户菜单
+      const userMenuResult = await requestUserMenuById(id);
+      const userMenu = userMenuResult.data;
+      commit('changeUserMenu', userMenu);
+      localCache.setCache('userMenu', userMenu);
+
+      // 跳转到首页(路由)
+      router.push('/main');
+    },
+    loadLocal({ commit }) {
+      const token = localCache.getCache('token');
+      if (token) {
+        commit('changeToken', token);
+      }
+      const userInfo = localCache.getCache('userInfo');
+      if (userInfo) {
+        commit('changeUserInfo', userInfo);
+      }
+      const userMenu = localCache.getCache('userMenu');
+      if (userMenu) {
+        commit('changeUserMenu', userMenu);
+      }
     },
   },
 };

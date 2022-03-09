@@ -1,8 +1,8 @@
 <template>
   <div class="login-account">
     <el-form :rules="rules" :model="account" ref="formRef">
-      <el-form-item label="账号" prop="username">
-        <el-input v-model="account.username"></el-input>
+      <el-form-item label="账号" prop="name">
+        <el-input v-model="account.name"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="account.password" show-password></el-input>
@@ -23,7 +23,7 @@ import localCache from '@/utils/cache';
 const store = useStore();
 
 const account = reactive({
-  username: localCache.getCache('username') ?? '',
+  name: localCache.getCache('name') ?? '',
   password: localCache.getCache('password') ?? '',
 });
 
@@ -35,11 +35,11 @@ const loginAction = (isKeepPassword: boolean) => {
       // 记住密码
       if (isKeepPassword) {
         // 本地缓存
-        localCache.setCache('username', account.username);
+        localCache.setCache('name', account.name);
         localCache.setCache('password', account.password);
       } else {
         // 删除密码
-        localCache.deleteCache('username');
+        localCache.deleteCache('name');
         localCache.deleteCache('password');
       }
 

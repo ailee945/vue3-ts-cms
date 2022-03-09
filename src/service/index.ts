@@ -1,4 +1,5 @@
 import VRequest from './request';
+import localCache from '@/utils/cache';
 import { BASE_URL, TIMEOUT } from './request/config';
 
 const vRequest = new VRequest({
@@ -7,7 +8,7 @@ const vRequest = new VRequest({
   interceptors: {
     // 携带token
     requestInterceptor: (config) => {
-      const token = '';
+      const token = localCache.getCache('token');
       if (token) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         config.headers!.Authorization = `Bearer ${token}`;
