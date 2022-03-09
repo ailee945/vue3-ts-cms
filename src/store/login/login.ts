@@ -17,7 +17,7 @@ const loginModule: Module<ILoginModule, IRootModule> = {
   state: {
     token: '',
     userInfo: {},
-    menuInfo: [],
+    userMenu: [],
   },
   mutations: {
     changeToken(state, token: string) {
@@ -26,8 +26,8 @@ const loginModule: Module<ILoginModule, IRootModule> = {
     changeUserInfo(state, userInfo: any) {
       state.userInfo = userInfo;
     },
-    changeUserMenu(state, menuInfo: any) {
-      state.menuInfo = menuInfo;
+    changeUserMenu(state, userMenu: any) {
+      state.userMenu = userMenu;
     },
   },
   actions: {
@@ -54,7 +54,7 @@ const loginModule: Module<ILoginModule, IRootModule> = {
       // 跳转到首页(路由)
       router.push('/main');
     },
-    loadLocal({ commit }) {
+    loadLocalLogin({ commit }) {
       const token = localCache.getCache('token');
       if (token) {
         commit('changeToken', token);

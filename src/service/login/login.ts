@@ -5,7 +5,7 @@ import type { IAccount, IDataType, ILoginResult } from './types';
 enum LoginAPI {
   AccountLogin = '/login',
   LoginUserInfo = '/users/',
-  LoginMenuInfo = '/menu/',
+  LoginMenuInfo = '/role/',
 }
 
 export function accountLoginRequest(account: IAccount) {
@@ -23,6 +23,6 @@ export function requestUserInfoById(id: number) {
 
 export function requestUserMenuById(id: number) {
   return vRequest.get<IDataType>({
-    url: LoginAPI.LoginMenuInfo + id,
+    url: LoginAPI.LoginMenuInfo + id + '/menu',
   });
 }

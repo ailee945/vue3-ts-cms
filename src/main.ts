@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import { store } from './store';
+import store from './store';
+import { setupStore } from './store';
 // import { vRequest } from './service';
 
 import 'normalize.css';
@@ -10,7 +11,7 @@ import './assets/css/index.less';
 // import ElementPlus from 'element-plus';
 // import 'element-plus/dist/index.css';
 
-createApp(App).use(store).use(router).mount('#app');
+createApp(App).use(store).use(router).use(setupStore).mount('#app');
 
 // 测试环境变量文件
 // console.log(process.env.VUE_APP_BASE_URL);
