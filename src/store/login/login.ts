@@ -6,10 +6,12 @@ import {
   requestUserMenuById,
 } from '@/service/login/login';
 import localCache from '@/utils/cache';
+import { mapMenusToRoutes } from '@/utils/map-menu';
 
 import { ILoginModule } from './types';
 import { IRootModule } from '../types';
 import type { IAccount } from '@/service/login/types';
+
 import router from '@/router';
 
 const loginModule: Module<ILoginModule, IRootModule> = {
@@ -28,6 +30,11 @@ const loginModule: Module<ILoginModule, IRootModule> = {
     },
     changeUserMenu(state, userMenu: any) {
       state.userMenu = userMenu;
+      // 获取到userMenu后动态注册组件
+      const routes = mapMenusToRoutes(userMenu);
+      routes.forEach((route) => {
+        router.addRoute('main', route);
+      });
     },
   },
   actions: {
