@@ -2,14 +2,16 @@
   <div class="main">
     <el-container class="main-content">
       <el-aside :width="isCollapse ? '60px' : '210px'">
-        <NavMenu :collapse="isCollapse"></NavMenu>
+        <nav-menu :collapse="isCollapse" />
       </el-aside>
       <el-container class="page">
         <el-header class="page-header">
-          <NavHeader @fold-state="changeFold"></NavHeader>
+          <nav-header @foldState="changeFold" />
         </el-header>
         <el-main class="page-content">
-          <router-view></router-view>
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -23,7 +25,6 @@ import NavHeader from '@/components/nav-header/src/nav-header.vue';
 const isCollapse = ref(false);
 const changeFold = (isFold: boolean) => {
   isCollapse.value = isFold;
-  console.log(isCollapse.value);
 };
 </script>
 
@@ -43,9 +44,15 @@ const changeFold = (isFold: boolean) => {
 
 .page-content {
   height: calc(100% - 48px);
+
+  .page-info {
+    background-color: #fff;
+    border-radius: 5px;
+  }
 }
 
-.el-header {
+.el-header,
+.el-footer {
   display: flex;
   color: #333;
   text-align: center;

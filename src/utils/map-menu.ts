@@ -6,8 +6,8 @@ export function mapMenusToRoutes(userMenu: any) {
   // 生成routes数组
   const allRoutes: RouteRecordRaw[] = [];
   const filePath = require.context('../router/main', true, /\.ts/);
+  // webpack内部函数
   filePath.keys().forEach((key) => {
-    console.log(key);
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const route = require('../router/main' + key.split('.')[1]);
     allRoutes.push(route.default);

@@ -1,9 +1,11 @@
 <template>
   <div class="role">
-    <h2>role</h2>
+    <VFrom></VFrom>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import VFrom from '@/base-ui/form';
+</script>
 
 <style scoped></style>

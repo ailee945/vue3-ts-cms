@@ -11,7 +11,7 @@ import './assets/css/index.less';
 // import ElementPlus from 'element-plus';
 // import 'element-plus/dist/index.css';
 
-createApp(App).use(store).use(router).use(setupStore).mount('#app');
+createApp(App).use(store).use(setupStore).use(router).mount('#app');
 
 // 测试环境变量文件
 // console.log(process.env.VUE_APP_BASE_URL);
